@@ -4,358 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GTA VI Countdown — Launch time in every country</title>
-<meta name="description" content="Live countdown to Grand Theft Auto VI (19 November 2026) with the unlock time for every country.">
+<meta name="description" content="Live countdown to Grand Theft Auto VI (19 November 2026) on a world map, with the unlock time for every country.">
 <meta name="theme-color" content="#0c0d1b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236a4be0'/><stop offset='.5' stop-color='%23ff6aa6'/><stop offset='1' stop-color='%23ffd98a'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='%230c0d1b'/><text x='32' y='46' font-family='Impact,sans-serif' font-size='38' text-anchor='middle' fill='url(%23g)'>VI</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #0c0d1b;
-  --glow: #1f1f38;
-  --cream: #fff9cb;
-  --pink: #ffb2c6;
-  --pink-soft: #fed1df;
-  --peach: #ffd4a8;
-  --lime: #e6ffa3;
-  --teal: #b8f0ea;
-  --lilac: #e5ddff;
-  --ink: #ffffff;
-  --muted: #b9b8d6;
-  --card: #1b1c36;
-  --card-hi: #262850;
-  --line: rgba(255, 255, 255, .1);
-  --r: 27px;
-  --cond: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
-  --body: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --heavy: "Anton", Impact, "Haettenschweiler", sans-serif;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: var(--body); font-weight: 500; letter-spacing: -.01em;
-  color: var(--ink);
-  background:
-    radial-gradient(900px 700px at 50% 380px, var(--glow), transparent 70%),
-    var(--bg);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a { color: inherit; }
-:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
-
-/* ---------- Banner strip + nav ---------- */
-.banner {
-  position: relative; height: 56px; overflow: hidden;
-  display: grid; place-items: center;
-  background: radial-gradient(circle at 50% 50%, #e7b4bf 0%, #ac87c5 50%, #726ba8 100%);
-  color: #473c63;
-  font-weight: 700; font-size: clamp(12px, 2.6vw, 17px); letter-spacing: .16em; text-transform: uppercase; text-indent: .16em;
-}
-.banner span { position: relative; }
-.banner svg { position: absolute; top: -70px; height: 330px; width: auto; fill: #8a70b4; opacity: .75; }
-.banner svg:nth-of-type(1) { left: 2%; transform: rotate(12deg); }
-.banner svg:nth-of-type(2) { left: 17%; top: -96px; transform: scaleX(-1) rotate(8deg); opacity: .55; }
-.banner svg:nth-of-type(3) { right: 15%; top: -90px; transform: rotate(-6deg); opacity: .55; }
-.banner svg:nth-of-type(4) { right: 1%; transform: scaleX(-1) rotate(14deg); }
-.nav {
-  position: fixed; z-index: 20; top: 0; left: 0; right: 0;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px clamp(14px, 3.4vw, 46px);
-  pointer-events: none;
-  transform: translateY(56px); transition: transform .3s;
-}
-.nav.stuck { transform: none; background: linear-gradient(180deg, var(--bg) 62%, transparent); }
-.nav .pill { transition: opacity .25s, transform .18s, filter .18s; }
-.nav:not(.stuck) .pill { opacity: 0; pointer-events: none; }
-@media (max-width: 1240px) { .nav:not(.stuck) .mark { opacity: 0; pointer-events: none; } }
-.nav > * { pointer-events: auto; }
-.mark { font-family: var(--heavy); font-size: 30px; line-height: 1; text-decoration: none; color: #fff; text-shadow: 0 2px 14px rgba(12, 13, 27, .7); }
-.pill {
-  display: inline-flex; align-items: center; gap: 10px;
-  height: 46px; padding: 0 22px; border-radius: 1000px; border: 0;
-  font: 500 15.5px/1 var(--body); letter-spacing: -.015em;
-  color: var(--bg); background: var(--pink);
-  text-decoration: none; cursor: pointer; white-space: nowrap;
-  transition: transform .18s, filter .18s, box-shadow .18s;
-}
-.pill:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 10px 30px rgba(255, 178, 198, .28); }
-.pill:active { transform: translateY(1px); }
-.pill.sm { height: 38px; padding: 0 18px; font-size: 13.5px; }
-.pill.lime { background: var(--lime); }
-.pill.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3); }
-.pill[hidden] { display: none; }
-.pill svg { width: 16px; height: 16px; }
-
-/* =====================================================
-   Hero: a framed dusk scene that tilts in 3D
-   ===================================================== */
-.hero {
-  --px: 0; --py: 0; --sy: 0; --hz: 30%;
-  position: relative;
-  padding: clamp(18px, 3.2vh, 34px) 16px 34px;
-  text-align: center;
-}
-.stage { max-width: 1093px; margin: 0 auto; perspective: 1300px; }
-.tilt {
-  position: relative;
-  transform-style: preserve-3d;
-  transform: rotateY(calc(var(--px) * 7deg)) rotateX(calc(var(--py) * -6deg));
-  will-change: transform;
-}
-.poster {
-  position: relative; overflow: hidden;
-  height: clamp(330px, 56svh, 540px);
-  border-radius: var(--r);
-  background: #2a2a5c;
-  box-shadow: 0 40px 90px rgba(0, 0, 0, .55), 0 0 110px rgba(172, 135, 197, .22), inset 0 0 0 1px rgba(255, 255, 255, .14);
-}
-.scene { position: absolute; inset: 0; pointer-events: none; }
-.scene > * { position: absolute; }
-.par {
-  will-change: transform;
-  transform: translate3d(calc(var(--px) * var(--d) * -1px), calc(var(--py) * var(--d) * -1px + var(--sy) * var(--d) * 1.5px), 0);
-}
-.sky {
-  inset: 0;
-  background: linear-gradient(180deg, #23244f 0%, #403d85 17%, #7a5db2 36%, #c57fc0 52%, #f3a3b4 62%, #ffc9a8 68%, #ffe7c2 70%);
-}
-.stars {
-  --d: 4; inset: -20px; bottom: 55%;
-  background-image:
-    radial-gradient(1.2px 1.2px at 22px 34px, #fff, transparent 60%),
-    radial-gradient(1px 1px at 96px 120px, #ffe9f3, transparent 60%),
-    radial-gradient(1.4px 1.4px at 160px 60px, #fff, transparent 60%),
-    radial-gradient(1px 1px at 210px 170px, #d9d0ff, transparent 60%),
-    radial-gradient(1.2px 1.2px at 250px 18px, #fff, transparent 60%);
-  background-size: 280px 220px;
-  -webkit-mask-image: linear-gradient(180deg, #000 10%, transparent 95%);
-          mask-image: linear-gradient(180deg, #000 10%, transparent 95%);
-  animation: twinkle 5s ease-in-out infinite alternate;
-}
-@keyframes twinkle { from { opacity: .5; } to { opacity: 1; } }
-.sun {
-  --d: 8; --s: min(44vmin, 330px);
-  left: 50%; bottom: var(--hz);
-  width: var(--s); height: var(--s);
-  margin: 0 0 calc(var(--s) * -.5) calc(var(--s) * -.5);
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 45%, #fffdf2 0%, #ffeccb 34%, #ffc9a8 66%, #f9a3b0 100%);
-  box-shadow: 0 0 70px 24px rgba(255, 214, 190, .55), 0 0 200px 100px rgba(243, 140, 180, .35);
-}
-.haze { left: 0; right: 0; bottom: var(--hz); height: 24%; background: linear-gradient(0deg, rgba(255, 226, 200, .7), rgba(243, 163, 180, .2) 50%, transparent); mix-blend-mode: screen; }
-.clouds { --d: 14; inset: 0; }
-.clouds i {
-  position: absolute; display: block; border-radius: 50%; filter: blur(18px); opacity: .8;
-  background: linear-gradient(180deg, rgba(122, 93, 178, 0) 0%, rgba(214, 130, 190, .55) 45%, rgba(255, 196, 170, .9) 100%);
-  animation: drift 60s linear infinite alternate;
-}
-.clouds i:nth-child(1) { left: -8%; top: 16%; width: 50%; height: 8%; }
-.clouds i:nth-child(2) { left: 52%; top: 9%; width: 58%; height: 7%; animation-duration: 80s; animation-direction: alternate-reverse; }
-.clouds i:nth-child(3) { left: 4%; top: 38%; width: 36%; height: 6%; animation-duration: 70s; }
-.clouds i:nth-child(4) { left: 62%; top: 33%; width: 46%; height: 7%; animation-duration: 90s; animation-direction: alternate-reverse; }
-@keyframes drift { from { transform: translateX(-4%); } to { transform: translateX(4%); } }
-.city { left: -4%; width: 108%; bottom: calc(var(--hz) - 30px); }
-.city.far { --d: 12; height: 34%; fill: #7f76c4; opacity: .8; }
-.city.near { --d: 20; height: 25%; fill: #37367a; }
-.sea { left: 0; right: 0; bottom: 0; height: var(--hz); overflow: hidden; background: linear-gradient(180deg, #ffd0b4 0%, #e592b9 10%, #8c62b4 34%, #3f3a86 66%, #1c1d44 100%); }
-.water { position: absolute; inset: 0; background: repeating-linear-gradient(180deg, rgba(255, 240, 225, .14) 0 1px, transparent 1px 8px); -webkit-mask-image: linear-gradient(180deg, #000, transparent 90%); mask-image: linear-gradient(180deg, #000, transparent 90%); }
-.glint {
-  --d: 6;
-  position: absolute; left: 50%; top: 0; width: min(64vmin, 480px); height: 100%; margin-left: calc(min(64vmin, 480px) / -2);
-  clip-path: polygon(34% 0, 66% 0, 100% 100%, 0 100%);
-  background: linear-gradient(180deg, rgba(255, 250, 235, .95), rgba(255, 190, 180, .5) 50%, transparent 92%);
-  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 5px, transparent 5px 12px); mask-image: repeating-linear-gradient(180deg, #000 0 5px, transparent 5px 12px);
-  -webkit-mask-size: 100% 12px; mask-size: 100% 12px;
-  animation: flow 1.6s linear infinite;
-}
-@keyframes flow { to { -webkit-mask-position: 0 12px; mask-position: 0 12px; } }
-.palm { bottom: -4%; height: 104%; }
-.palm.l { --d: 44; left: -3%; }
-.palm.r { --d: 32; right: -3%; height: 84%; }
-.palm svg { height: 100%; width: auto; display: block; fill: #14132c; transform-origin: 45% 100%; animation: sway 7s ease-in-out infinite alternate; }
-.palm.r svg { transform: scaleX(-1); animation-name: sway-r; animation-duration: 9s; }
-@keyframes sway { from { transform: rotate(-1.4deg); } to { transform: rotate(1.6deg); } }
-@keyframes sway-r { from { transform: scaleX(-1) rotate(-1.2deg); } to { transform: scaleX(-1) rotate(1.8deg); } }
-.vignette { inset: 0; background: radial-gradient(120% 95% at 50% 40%, transparent 55%, rgba(12, 13, 27, .55) 100%); }
-.grain { inset: 0; opacity: .12; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E"); }
-
-/* Logo floats in front of the frame */
-h1 {
-  position: absolute; left: 0; right: 0; top: clamp(14px, 5%, 34px); margin: 0;
-  transform: translateZ(70px); transform-style: preserve-3d;
-  font-weight: 700; text-transform: uppercase; line-height: 1;
-}
-h1 .gta { display: block; font-size: clamp(12px, 2.3vw, 21px); letter-spacing: .34em; text-indent: .34em; color: #fff; text-shadow: 0 2px 16px rgba(35, 36, 79, .9); }
-.vi { position: relative; display: inline-block; font-family: var(--heavy); font-weight: 400; font-size: clamp(110px, min(25vw, 30svh), 250px); line-height: 1.02; padding: 0 .06em; }
-.vi span { display: block; }
-.vi .back {
-  position: absolute; inset: 0; padding: inherit;
-  --ex: calc(var(--px) * -1.3px); --ey: calc(var(--py) * -1px + 1.1px);
-  color: #4a2a9a;
-  -webkit-text-stroke: 7px #2b1a66;
-  text-shadow:
-    calc(var(--ex) * 2) calc(var(--ey) * 2) 0 #2b1a66, calc(var(--ex) * 4) calc(var(--ey) * 4) 0 #281861,
-    calc(var(--ex) * 6) calc(var(--ey) * 6) 0 #25165b, calc(var(--ex) * 8) calc(var(--ey) * 8) 0 #221455,
-    calc(var(--ex) * 10) calc(var(--ey) * 10) 0 #1f124f, calc(var(--ex) * 12) calc(var(--ey) * 12) 0 #1c1049,
-    calc(var(--ex) * 14) calc(var(--ey) * 14) 0 #190e43,
-    calc(var(--ex) * 24) calc(var(--ey) * 24 + 14px) 30px rgba(12, 13, 27, .6),
-    0 0 70px rgba(255, 150, 200, .55);
-}
-.vi .front {
-  position: relative;
-  background:
-    linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .75) 50%, transparent 58%) 130% 0 / 260% 100% no-repeat,
-    linear-gradient(118deg, #4d6bf0 4%, #8a52ea 24%, #e050c8 44%, #ff6aa0 58%, #ff9a62 76%, #ffd98a 96%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 249, 235, .9);
-  animation: sheen 6s ease-in-out infinite;
-}
-@keyframes sheen { 0%, 55% { background-position: 130% 0, 0 0; } 85%, 100% { background-position: -40% 0, 0 0; } }
-
-/* Clock straddles the bottom edge of the frame */
-.clock {
-  position: relative;
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 1.6vw, 16px);
-  width: min(700px, 94%); margin: clamp(-96px, -9svh, -54px) auto 0;
-  transform: translateZ(110px); transform-style: preserve-3d;
-}
-.unit {
-  position: relative; perspective: 420px;
-  padding: clamp(10px, 2vw, 18px) 4px clamp(10px, 1.8vw, 16px);
-  border-radius: clamp(16px, 2.6vw, 27px);
-  background: #21254c;
-  box-shadow: 0 24px 50px rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(255, 255, 255, .12), inset 0 1px 0 rgba(255, 255, 255, .16);
-}
-.unit:nth-child(2) { background: #38365d; }
-.unit:nth-child(3) { background: #4b2f54; }
-.unit:nth-child(4) { background: #243152; }
-.unit .n {
-  display: block;
-  font-family: var(--cond); font-weight: 700; font-size: clamp(50px, min(13vw, 13svh), 112px); line-height: .92;
-  font-variant-numeric: tabular-nums; color: var(--cream);
-  transform-origin: 50% 100%; backface-visibility: hidden;
-}
-.unit .n.roll { animation: roll .5s cubic-bezier(.2, .9, .3, 1.15); }
-@keyframes roll { from { transform: rotateX(88deg); opacity: .1; } to { transform: rotateX(0); opacity: 1; } }
-.unit .l { display: block; margin-top: 6px; font-family: var(--cond); font-weight: 700; font-size: clamp(12px, 2vw, 17px); letter-spacing: .04em; text-transform: uppercase; color: var(--teal); }
-.unit:nth-child(2) .l { color: var(--lilac); }
-.unit:nth-child(3) .l { color: var(--pink-soft); }
-.live {
-  display: none; position: relative;
-  margin: clamp(-80px, -8svh, -50px) auto 0; width: fit-content; padding: 10px 34px 14px; border-radius: var(--r);
-  background: #4b2f54; box-shadow: 0 24px 50px rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(255, 255, 255, .14);
-  font-family: var(--cond); font-weight: 700; font-size: clamp(56px, 13vw, 120px); line-height: 1; text-transform: uppercase; color: var(--cream);
-  transform: translateZ(110px);
-}
-.is-live .clock { display: none; }
-.is-live .live { display: block; }
-
-.where { margin: 44px auto 0; max-width: 60ch; font-size: clamp(14px, 2.1vw, 16.5px); line-height: 1.4; }
-.where b { color: var(--cream); font-weight: 700; }
-.where small { display: block; margin-top: 3px; font-size: .9em; color: var(--muted); }
-.info {
-  max-width: 1093px; margin: 22px auto 0;
-  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
-}
-.coming { margin: 0; text-align: left; font-weight: 700; font-size: clamp(17px, 2.2vw, 23px); line-height: 1.2; text-transform: uppercase; }
-.plat { margin: 0; text-align: right; font-weight: 700; font-size: clamp(13px, 1.6vw, 16px); line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }
-.cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-
-/* =====================================================
-   Sections
-   ===================================================== */
-.wrap { max-width: 1093px; margin: 0 auto; }
-.band {
-  margin: 30px 16px 0; padding: 0;
-}
-.band .wrap {
-  position: relative; overflow: hidden;
-  border-radius: var(--r);
-  padding: clamp(30px, 6vw, 60px) clamp(22px, 5vw, 60px);
-  background: linear-gradient(0deg, #99c7fe 20%, #b78cf3 70%, #d263e9 115%);
-  color: #1b1c4a;
-}
-.band svg { position: absolute; right: -30px; bottom: -40px; height: 150%; width: auto; fill: rgba(255, 255, 255, .22); transform: rotate(-8deg); }
-.band h2 { position: relative; margin: 0; font-family: var(--body); font-weight: 700; font-size: clamp(34px, 6.6vw, 70px); line-height: 1.05; letter-spacing: -.02em; text-transform: none; color: #fff; }
-.band p { position: relative; margin: 14px 0 0; max-width: 46ch; font-size: clamp(15px, 2vw, 18px); line-height: 1.45; }
-.band p b { font-weight: 700; }
-
-.world { padding: 64px 16px 40px; }
-.eyebrow { margin: 0 0 6px; font-family: var(--cond); font-weight: 700; font-size: 18px; letter-spacing: .03em; text-transform: uppercase; color: var(--teal); }
-h2 { margin: 0; font-family: var(--cond); font-weight: 700; font-size: clamp(42px, 7.4vw, 68px); line-height: .9; text-transform: uppercase; color: var(--cream); }
-.lede { margin: 14px 0 22px; max-width: 64ch; font-size: 15.5px; line-height: 1.5; }
-.lede b { color: var(--cream); font-weight: 700; }
-
-.tools {
-  position: sticky; top: 60px; z-index: 5;
-  display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-  padding: 12px 0;
-  background: linear-gradient(180deg, var(--bg) 80%, transparent);
-}
-.search {
-  flex: 1 1 220px; min-width: 0;
-  font: 500 16px var(--body); color: var(--ink);
-  height: 46px; padding: 0 20px; border-radius: 1000px;
-  border: 0; background: var(--card); box-shadow: inset 0 0 0 1px var(--line);
-}
-.search::placeholder { color: #8f8fb4; }
-.search:focus { outline: none; box-shadow: inset 0 0 0 2px var(--pink); }
-.seg { display: inline-flex; padding: 4px; border-radius: 1000px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
-.seg button { font: 500 13.5px var(--body); color: var(--muted); height: 38px; padding: 0 15px; border: 0; border-radius: 1000px; background: transparent; cursor: pointer; }
-.seg button[aria-pressed="true"] { background: var(--lime); color: var(--bg); }
-.count { font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
-
-.list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 12px; }
-.list li { perspective: 700px; }
-.row {
-  --tx: 0deg; --ty: 0deg; --mx: 50%; --my: 50%;
-  position: relative; overflow: hidden;
-  display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 1px 12px; align-items: center;
-  width: 100%; text-align: left; font: inherit; color: inherit;
-  padding: 14px 18px; border-radius: 20px; border: 0;
-  background: var(--card); box-shadow: inset 0 0 0 1px var(--line);
-  cursor: pointer;
-  transform: rotateX(var(--tx)) rotateY(var(--ty));
-  transition: transform .18s ease-out, background .15s, box-shadow .2s;
-}
-.row::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .2s; background: radial-gradient(220px circle at var(--mx) var(--my), rgba(255, 178, 198, .22), transparent 65%); }
-.row:hover { background: var(--card-hi); box-shadow: inset 0 0 0 1px rgba(255, 178, 198, .55), 0 18px 34px rgba(0, 0, 0, .45); z-index: 1; }
-.row:hover::after { opacity: 1; }
-.row[aria-pressed="true"] { background: #4b2f54; box-shadow: inset 0 0 0 2px var(--pink); }
-.flag { grid-row: 1 / span 2; font-size: 26px; line-height: 1; }
-.name { font-weight: 500; font-size: 15.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.name i { font-style: normal; color: var(--muted); }
-.when { grid-column: 2; font-size: 13px; font-weight: 400; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.left { grid-column: 3; grid-row: 1 / span 2; font-family: var(--cond); font-weight: 700; font-size: 25px; font-variant-numeric: tabular-nums; color: var(--cream); text-align: right; white-space: nowrap; }
-.row.out .left { color: var(--lime); }
-.you { display: inline-block; margin-left: 7px; vertical-align: 1px; font: 700 9.5px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--bg); background: var(--pink); border-radius: 1000px; padding: 2px 7px; }
-.empty { padding: 30px 0; color: var(--muted); }
-
-footer { padding: 50px 16px 60px; text-align: center; color: #a9a8c9; font-size: 13px; font-weight: 400; line-height: 1.6; }
-footer .mark { display: inline-block; font-size: 44px; margin-bottom: 18px; background: linear-gradient(118deg, #4d6bf0, #e050c8 45%, #ff9a62 80%, #ffd98a); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
-footer p { margin: 0 auto 8px; max-width: 76ch; }
-
-@media (max-width: 640px) {
-  .poster { height: clamp(320px, 52svh, 460px); }
-  .info { grid-template-columns: 1fr; text-align: center; gap: 14px; }
-  .coming, .plat { text-align: center; }
-  .cta { order: -1; }
-  .list { grid-template-columns: 1fr; }
-  .palm.l { height: 86%; left: -16%; }
-  .palm.r { height: 66%; right: -16%; }
-  .where { margin-top: 30px; }
-  .count { width: 100%; }
-  h1 { transform: translateZ(40px); }
-  .clock, .live { transform: translateZ(60px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
@@ -367,32 +22,23 @@ footer p { margin: 0 auto 8px; max-width: 76ch; }
 
 <nav class="nav" id="nav" aria-label="Page">
   <a class="mark" href="#top" aria-label="Back to top">VI</a>
-  <a class="pill sm" href="#countries">All countries</a>
+  <div class="links">
+    <a class="pill sm white" href="#map">Map</a>
+    <a class="pill sm" href="#countries">All countries</a>
+  </div>
 </nav>
 
 <header class="hero" id="top">
-  <div class="stage" id="hero">
-    <div class="tilt">
-      <div class="poster">
-        <div class="scene" aria-hidden="true">
-          <div class="sky"></div>
-          <div class="stars par"></div>
-          <div class="sun par"></div>
-          <div class="haze"></div>
-          <div class="clouds par"><i></i><i></i><i></i><i></i></div>
-          <svg class="city far par" viewBox="0 0 1600 200" preserveAspectRatio="xMidYMax slice"><path id="cityFar"/></svg>
-          <svg class="city near par" viewBox="0 0 1600 200" preserveAspectRatio="xMidYMax slice"><path id="cityNear"/></svg>
-          <div class="sea"><div class="water"></div><div class="glint par"></div></div>
-          <div class="palm l par"><svg viewBox="0 0 300 600"><use href="#palm"/></svg></div>
-          <div class="palm r par"><svg viewBox="0 0 300 600"><use href="#palm"/></svg></div>
-          <div class="vignette"></div>
-          <div class="grain"></div>
-        </div>
-      </div>
-      <h1 aria-label="Grand Theft Auto Six">
-        <span class="gta" aria-hidden="true">Grand Theft Auto</span>
-        <span class="vi" aria-hidden="true"><span class="back">VI</span><span class="front">VI</span></span>
-      </h1>
+  <div class="hero-in" id="hero">
+    <h1 aria-label="Grand Theft Auto Six">
+      <span class="gta" aria-hidden="true">Grand Theft Auto</span>
+      <span class="vi" aria-hidden="true"><span class="back">VI</span><span class="front">VI</span></span>
+    </h1>
+    <div class="clockbox">
+      <p class="where" aria-live="polite">
+        <span id="whereLine">Loading…</span>
+        <small id="whereSub"></small>
+      </p>
       <div class="clock" role="timer" aria-label="Time until launch">
         <div class="unit"><span class="n" id="d">--</span><span class="l">Days</span></div>
         <div class="unit"><span class="n" id="h">--</span><span class="l">Hours</span></div>
@@ -400,32 +46,41 @@ footer p { margin: 0 auto 8px; max-width: 76ch; }
         <div class="unit"><span class="n" id="s">--</span><span class="l">Seconds</span></div>
       </div>
       <div class="live">Out now</div>
+      <div class="meta">
+        <strong>Coming November 19, 2026</strong>
+        <span>PS5 · Xbox Series X|S</span>
+        <button class="pill sm ghost" id="reset" hidden>Back to my location</button>
+      </div>
     </div>
-  </div>
-
-  <p class="where" aria-live="polite">
-    <span id="whereLine">Loading…</span>
-    <small id="whereSub"></small>
-  </p>
-
-  <div class="info">
-    <p class="coming">Coming<br>November 19, 2026</p>
-    <div class="cta">
-      <a class="pill" href="#countries">Every country
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v12M3 9l5 5 5-5"/></svg>
-      </a>
-      <button class="pill ghost" id="reset" hidden>Back to my location</button>
-    </div>
-    <p class="plat">PS5<br>Xbox Series X|S</p>
   </div>
 </header>
 
-<section class="band" aria-label="Rollout">
-  <div class="wrap">
-    <svg viewBox="0 0 300 600" aria-hidden="true"><use href="#palm"/></svg>
-    <h2>Midnight, everywhere.</h2>
-    <p id="bandStat">The game unlocks at midnight local time, country by country.</p>
-    <p><b id="bandCount"></b></p>
+<section class="mapsec" id="map" aria-label="World map of launch times">
+  <div class="mapcard" id="mapcard">
+    <svg id="world" role="img" aria-label="World map coloured by when GTA VI unlocks in each country"></svg>
+    <div class="overlay" id="overlay"></div>
+    <div class="tip" id="tip" role="status"></div>
+    <div class="loading" id="mapLoading">Loading map…</div>
+
+    <div class="mtop">
+      <button class="chip" id="chip" type="button" aria-label="Show selected place on the map">
+        <span class="f" id="chipFlag"></span>
+        <span class="tx"><span class="nm" id="chipName"></span><span class="ct" id="chipTime"></span></span>
+      </button>
+      <div class="ctrls">
+        <button class="ctrl" id="zin" type="button" aria-label="Zoom in"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></button>
+        <button class="ctrl" id="zout" type="button" aria-label="Zoom out"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10"/></svg></button>
+        <button class="ctrl" id="zworld" type="button" aria-label="Show the whole world"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c-2.2 2.2-2.2 9.8 0 12M8 2c2.2 2.2 2.2 9.8 0 12"/></svg></button>
+        <button class="ctrl" id="zme" type="button" aria-label="Go to my location"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg></button>
+      </div>
+    </div>
+    <div class="mbot">
+      <div class="legend">
+        <span>First</span><span class="bar" aria-hidden="true"></span><span>Last</span>
+        <span><span class="sw" aria-hidden="true"></span>Out now · <b id="outCount">0</b></span>
+      </div>
+      <div class="hint" id="hint">Drag to move · scroll or pinch to zoom · tap a country</div>
+    </div>
   </div>
 </section>
 
@@ -436,7 +91,7 @@ footer p { margin: 0 auto 8px; max-width: 76ch; }
     <p class="lede">
       GTA VI unlocks at <b>midnight local time on 19 November 2026</b> on PS5 and Xbox Series X|S.
       The <b>United States and Canada</b> are reported to unlock together at midnight Eastern, which means the evening of 18 November further west.
-      Each card shows when that country unlocks on your clock; tap one to put it on the main countdown.
+      <span id="rollout"></span> Tap any country to show it on the map.
     </p>
 
     <div class="tools">
@@ -457,6 +112,7 @@ footer p { margin: 0 auto 8px; max-width: 76ch; }
   <div class="wrap">
     <span class="mark" aria-hidden="true">VI</span>
     <p>Times are for the console release and use each country's main time zone (large countries are split into their major zones). Countries with more than one zone, or where your store account is set to another region, may differ — your console's store page shows the exact unlock time for your account.</p>
+    <p>Map data: Natural Earth, via world-atlas. Borders are shown for orientation only.</p>
     <p>Unofficial fan-made countdown. Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive. Grand Theft Auto is a trademark of its respective owner.</p>
   </div>
 </footer>
@@ -472,341 +128,10 @@ footer p { margin: 0 auto 8px; max-width: 76ch; }
   </symbol>
 </svg>
 
-<script>
-(function () {
-  'use strict';
-
-  // Release: midnight local on this calendar date.
-  var Y = 2026, M = 11, D = 19;
-  // The US and Canada unlock as one region keyed to this zone.
-  var NA_KEY = 'America/New_York';
-
-  // code | zone | city label (only for countries split into several zones)
-  var DATA = (
-    'NZ|Pacific/Auckland;FJ|Pacific/Fiji;TO|Pacific/Tongatapu;WS|Pacific/Apia;KI|Pacific/Tarawa;MH|Pacific/Majuro;NR|Pacific/Nauru;TV|Pacific/Funafuti;' +
-    'SB|Pacific/Guadalcanal;VU|Pacific/Efate;FM|Pacific/Pohnpei;PG|Pacific/Port_Moresby;PW|Pacific/Palau;' +
-    'AU|Australia/Sydney|Sydney, Melbourne;AU|Australia/Brisbane|Brisbane;AU|Australia/Adelaide|Adelaide;AU|Australia/Darwin|Darwin;AU|Australia/Perth|Perth;' +
-    'JP|Asia/Tokyo;KR|Asia/Seoul;KP|Asia/Pyongyang;TL|Asia/Dili;CN|Asia/Shanghai;HK|Asia/Hong_Kong;MO|Asia/Macau;TW|Asia/Taipei;PH|Asia/Manila;SG|Asia/Singapore;' +
-    'MY|Asia/Kuala_Lumpur;BN|Asia/Brunei;MN|Asia/Ulaanbaatar;ID|Asia/Jakarta|Jakarta;ID|Asia/Makassar|Bali, Makassar;ID|Asia/Jayapura|Jayapura;' +
-    'TH|Asia/Bangkok;VN|Asia/Ho_Chi_Minh;KH|Asia/Phnom_Penh;LA|Asia/Vientiane;MM|Asia/Yangon;BD|Asia/Dhaka;BT|Asia/Thimphu;NP|Asia/Kathmandu;IN|Asia/Kolkata;' +
-    'LK|Asia/Colombo;MV|Indian/Maldives;PK|Asia/Karachi;AF|Asia/Kabul;KZ|Asia/Almaty;KG|Asia/Bishkek;UZ|Asia/Tashkent;TJ|Asia/Dushanbe;TM|Asia/Ashgabat;' +
-    'IR|Asia/Tehran;AE|Asia/Dubai;OM|Asia/Muscat;SA|Asia/Riyadh;QA|Asia/Qatar;BH|Asia/Bahrain;KW|Asia/Kuwait;YE|Asia/Aden;IQ|Asia/Baghdad;JO|Asia/Amman;' +
-    'SY|Asia/Damascus;LB|Asia/Beirut;IL|Asia/Jerusalem;PS|Asia/Hebron;AM|Asia/Yerevan;AZ|Asia/Baku;GE|Asia/Tbilisi;TR|Europe/Istanbul;CY|Asia/Nicosia;' +
-    'RU|Europe/Moscow|Moscow;RU|Asia/Yekaterinburg|Yekaterinburg;RU|Asia/Novosibirsk|Novosibirsk;RU|Asia/Vladivostok|Vladivostok;' +
-    'BY|Europe/Minsk;UA|Europe/Kiev;MD|Europe/Chisinau;RO|Europe/Bucharest;BG|Europe/Sofia;GR|Europe/Athens;FI|Europe/Helsinki;EE|Europe/Tallinn;LV|Europe/Riga;LT|Europe/Vilnius;' +
-    'PL|Europe/Warsaw;CZ|Europe/Prague;SK|Europe/Bratislava;HU|Europe/Budapest;AT|Europe/Vienna;DE|Europe/Berlin;CH|Europe/Zurich;LI|Europe/Vaduz;IT|Europe/Rome;' +
-    'SM|Europe/San_Marino;VA|Europe/Vatican;MT|Europe/Malta;SI|Europe/Ljubljana;HR|Europe/Zagreb;BA|Europe/Sarajevo;RS|Europe/Belgrade;ME|Europe/Podgorica;' +
-    'XK|Europe/Belgrade;MK|Europe/Skopje;AL|Europe/Tirane;FR|Europe/Paris;MC|Europe/Monaco;BE|Europe/Brussels;NL|Europe/Amsterdam;LU|Europe/Luxembourg;' +
-    'ES|Europe/Madrid;AD|Europe/Andorra;DK|Europe/Copenhagen;NO|Europe/Oslo;SE|Europe/Stockholm;GB|Europe/London;IE|Europe/Dublin;PT|Europe/Lisbon;IS|Atlantic/Reykjavik;' +
-    'EG|Africa/Cairo;LY|Africa/Tripoli;TN|Africa/Tunis;DZ|Africa/Algiers;MA|Africa/Casablanca;SD|Africa/Khartoum;SS|Africa/Juba;ET|Africa/Addis_Ababa;ER|Africa/Asmara;' +
-    'DJ|Africa/Djibouti;SO|Africa/Mogadishu;KE|Africa/Nairobi;UG|Africa/Kampala;TZ|Africa/Dar_es_Salaam;RW|Africa/Kigali;BI|Africa/Bujumbura;KM|Indian/Comoro;' +
-    'MG|Indian/Antananarivo;MU|Indian/Mauritius;SC|Indian/Mahe;ZA|Africa/Johannesburg;LS|Africa/Maseru;SZ|Africa/Mbabane;BW|Africa/Gaborone;NA|Africa/Windhoek;' +
-    'ZW|Africa/Harare;ZM|Africa/Lusaka;MW|Africa/Blantyre;MZ|Africa/Maputo;AO|Africa/Luanda;CD|Africa/Kinshasa;CG|Africa/Brazzaville;GA|Africa/Libreville;' +
-    'GQ|Africa/Malabo;CM|Africa/Douala;CF|Africa/Bangui;TD|Africa/Ndjamena;NE|Africa/Niamey;NG|Africa/Lagos;BJ|Africa/Porto-Novo;TG|Africa/Lome;GH|Africa/Accra;' +
-    'CI|Africa/Abidjan;BF|Africa/Ouagadougou;ML|Africa/Bamako;LR|Africa/Monrovia;SL|Africa/Freetown;GN|Africa/Conakry;GW|Africa/Bissau;SN|Africa/Dakar;GM|Africa/Banjul;' +
-    'MR|Africa/Nouakchott;ST|Africa/Sao_Tome;CV|Atlantic/Cape_Verde;' +
-    'BR|America/Sao_Paulo|São Paulo, Rio;BR|America/Manaus|Manaus;AR|America/Argentina/Buenos_Aires;UY|America/Montevideo;PY|America/Asuncion;CL|America/Santiago;' +
-    'BO|America/La_Paz;PE|America/Lima;EC|America/Guayaquil;CO|America/Bogota;VE|America/Caracas;GY|America/Guyana;SR|America/Paramaribo;' +
-    'TT|America/Port_of_Spain;BB|America/Barbados;GD|America/Grenada;VC|America/St_Vincent;LC|America/St_Lucia;DM|America/Dominica;AG|America/Antigua;KN|America/St_Kitts;' +
-    'DO|America/Santo_Domingo;HT|America/Port-au-Prince;JM|America/Jamaica;CU|America/Havana;BS|America/Nassau;PA|America/Panama;CR|America/Costa_Rica;NI|America/Managua;' +
-    'HN|America/Tegucigalpa;SV|America/El_Salvador;GT|America/Guatemala;BZ|America/Belize;MX|America/Mexico_City|Mexico City;MX|America/Cancun|Cancún;MX|America/Tijuana|Tijuana;' +
-    'US|America/New_York|Eastern;US|America/Chicago|Central;US|America/Denver|Mountain;US|America/Los_Angeles|Pacific;US|America/Anchorage|Alaska;US|Pacific/Honolulu|Hawaii;' +
-    'CA|America/St_Johns|Newfoundland;CA|America/Halifax|Atlantic;CA|America/Toronto|Eastern;CA|America/Winnipeg|Central;CA|America/Edmonton|Mountain;CA|America/Vancouver|Pacific'
-  ).split(';');
-
-  // Browser zone names that differ from the ones used above.
-  var ALIAS = {
-    'Asia/Calcutta': 'Asia/Kolkata', 'Europe/Kyiv': 'Europe/Kiev', 'Asia/Saigon': 'Asia/Ho_Chi_Minh', 'Asia/Katmandu': 'Asia/Kathmandu',
-    'Asia/Rangoon': 'Asia/Yangon', 'America/Buenos_Aires': 'America/Argentina/Buenos_Aires', 'Australia/Melbourne': 'Australia/Sydney',
-    'Australia/Hobart': 'Australia/Sydney', 'Australia/Canberra': 'Australia/Sydney', 'America/Montreal': 'America/Toronto',
-    'America/Phoenix': 'America/Denver', 'America/Detroit': 'America/New_York', 'America/Boise': 'America/Denver',
-    'America/Regina': 'America/Winnipeg', 'America/Calgary': 'America/Edmonton', 'Asia/Istanbul': 'Europe/Istanbul', 'Asia/Dacca': 'Asia/Dhaka'
-  };
-
-  var fmtCache = {};
-  function partsFmt(tz) {
-    return fmtCache[tz] || (fmtCache[tz] = new Intl.DateTimeFormat('en-US', {
-      timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric',
-      hour: 'numeric', minute: 'numeric', second: 'numeric'
-    }));
-  }
-  function offsetMs(tz, t) {
-    var o = {};
-    partsFmt(tz).formatToParts(new Date(t)).forEach(function (p) { o[p.type] = +p.value; });
-    return Date.UTC(o.year, o.month - 1, o.day, o.hour % 24, o.minute, o.second) - Math.floor(t / 1000) * 1000;
-  }
-  function midnightIn(tz) {
-    var wall = Date.UTC(Y, M - 1, D);
-    var t = wall - offsetMs(tz, wall);
-    return wall - offsetMs(tz, t);
-  }
-  function validZone(tz) {
-    try { new Intl.DateTimeFormat('en-US', { timeZone: tz }); return true; } catch (e) { return false; }
-  }
-
-  var regionNames = null;
-  try { regionNames = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
-  function countryName(cc) {
-    var n = null;
-    try { n = regionNames && regionNames.of(cc); } catch (e) {}
-    return n && n !== cc ? n : cc;
-  }
-  function flag(cc) {
-    return String.fromCodePoint(0x1F1E6 + cc.charCodeAt(0) - 65, 0x1F1E6 + cc.charCodeAt(1) - 65);
-  }
-  function fmtIn(tz, t) {
-    var opts = { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' };
-    if (tz) opts.timeZone = tz;
-    return new Intl.DateTimeFormat(undefined, opts).format(new Date(t));
-  }
-  function fmtShort(tz, t) {
-    var opts = { weekday: 'short', hour: 'numeric', minute: '2-digit' };
-    if (tz) opts.timeZone = tz;
-    return new Intl.DateTimeFormat(undefined, opts).format(new Date(t));
-  }
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-  var naKey = midnightIn(NA_KEY);
-  var places = [];
-  DATA.forEach(function (line, i) {
-    var f = line.split('|');
-    if (!validZone(f[1])) return;
-    var na = f[0] === 'US' || f[0] === 'CA';
-    var name = countryName(f[0]);
-    places.push({
-      id: f[0] + (f[2] ? ':' + f[1] : ''),
-      cc: f[0], tz: f[1], city: f[2] || '', name: name,
-      label: name + (f[2] ? ' · ' + f[2] : ''),
-      at: na ? naKey : midnightIn(f[1]),
-      hay: (name + ' ' + (f[2] || '') + ' ' + f[1].replace(/_/g, ' ') + ' ' + f[0]).toLowerCase(),
-      order: i
-    });
-  });
-
-  // ----- Where is the visitor? -----
-  var userTz = '';
-  try { userTz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
-  var lookTz = ALIAS[userTz] || userTz;
-  var home = places.filter(function (p) { return p.tz === lookTz; })[0];
-  if (!home) {
-    // Unknown zone: fall back to midnight on the visitor's own clock.
-    var wall = new Date(Y, M - 1, D).getTime();
-    var naGuess = /^(America\/(Indiana|Kentucky|North_Dakota)\/|US\/|Canada\/)/.test(userTz);
-    home = { id: 'local', cc: '', tz: userTz && validZone(userTz) ? userTz : undefined, city: '', name: 'your time zone', label: 'your time zone', at: naGuess ? naKey : wall, custom: true };
-  }
-
-  var selected = home;
-  try {
-    var saved = localStorage.getItem('gta6.place');
-    if (saved) selected = places.filter(function (p) { return p.id === saved; })[0] || home;
-  } catch (e) {}
-
-  // ----- Hero clock -----
-  var $ = function (id) { return document.getElementById(id); };
-  var hero = $('hero'), elD = $('d'), elH = $('h'), elM = $('m'), elS = $('s');
-
-  function describe() {
-    var p = selected;
-    var prefix = p.custom ? 'Unlocks in ' : 'Unlocks in ' + (p.cc ? flag(p.cc) + ' ' : '');
-    $('whereLine').innerHTML = '';
-    $('whereLine').append(prefix, Object.assign(document.createElement('b'), { textContent: p.label }), ' on ' + fmtIn(p.tz, p.at));
-    var sameClock = p === home || offsetMs(p.tz || userTz || 'UTC', p.at) === offsetMs(home.tz || userTz || 'UTC', p.at);
-    $('whereSub').textContent = sameClock ? '' : 'That is ' + fmtIn(undefined, p.at) + ' your time';
-    $('reset').hidden = p === home;
-  }
-
-  function remaining(ms) {
-    var s = Math.max(0, Math.floor(ms / 1000));
-    return { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
-  }
-  function short(ms) {
-    var r = remaining(ms);
-    return r.d ? r.d + 'd ' + pad(r.h) + 'h ' + pad(r.m) + 'm' : pad(r.h) + ':' + pad(r.m) + ':' + pad(r.s);
-  }
-
-  // ----- Country list -----
-  var list = $('list'), rows = [], sortBy = 'time';
-
-  places.forEach(function (p) {
-    var li = document.createElement('li');
-    var b = document.createElement('button');
-    b.className = 'row'; b.type = 'button';
-    var fl = document.createElement('span'); fl.className = 'flag'; fl.textContent = flag(p.cc); fl.setAttribute('aria-hidden', 'true');
-    var nm = document.createElement('span'); nm.className = 'name'; nm.textContent = p.name;
-    if (p.city) { var c = document.createElement('i'); c.textContent = ' · ' + p.city; nm.append(c); }
-    if (p === home) { var y = document.createElement('span'); y.className = 'you'; y.textContent = 'You'; nm.append(y); }
-    var wh = document.createElement('span'); wh.className = 'when'; var same = fmtShort(p.tz, p.at) === fmtShort(undefined, p.at);
-    wh.textContent = same || p.at === naKey ? fmtShort(p.tz, p.at) + ' local time' : fmtShort(undefined, p.at) + ' your time';
-    wh.title = fmtIn(p.tz, p.at) + ' local time / ' + fmtIn(undefined, p.at) + ' your time';
-    var lf = document.createElement('span'); lf.className = 'left';
-    b.append(fl, nm, wh, lf);
-    b.addEventListener('click', function () { choose(p); window.scrollTo({ top: 0 }); });
-    li.append(b);
-    rows.push({ p: p, li: li, b: b, left: lf });
-  });
-
-  function render() {
-    var q = $('q').value.trim().toLowerCase();
-    var shown = rows.filter(function (r) { return !q || r.p.hay.indexOf(q) !== -1; });
-    shown.sort(sortBy === 'time'
-      ? function (a, b) { return a.p.at - b.p.at || a.p.order - b.p.order; }
-      : function (a, b) { return a.p.label.localeCompare(b.p.label); });
-    list.replaceChildren.apply(list, shown.map(function (r) { return r.li; }));
-    $('empty').hidden = shown.length > 0;
-    $('count').textContent = shown.length + ' of ' + rows.length + ' regions';
-  }
-
-  function choose(p) {
-    selected = p;
-    try { p === home ? localStorage.removeItem('gta6.place') : localStorage.setItem('gta6.place', p.id); } catch (e) {}
-    rows.forEach(function (r) { r.b.setAttribute('aria-pressed', r.p === selected ? 'true' : 'false'); });
-    describe(); tick();
-  }
-
-  // Change a clock number and replay its roll-in.
-  function setNum(el, v) {
-    if (el.textContent === v) return;
-    el.textContent = v;
-    el.classList.remove('roll'); void el.offsetWidth; el.classList.add('roll');
-  }
-
-  function tick() {
-    var now = Date.now();
-    var left = selected.at - now;
-    hero.classList.toggle('is-live', left <= 0);
-    var r = remaining(left);
-    setNum(elD, pad(r.d)); setNum(elH, pad(r.h)); setNum(elM, pad(r.m)); setNum(elS, pad(r.s));
-    document.title = left > 0 ? r.d + 'd ' + pad(r.h) + 'h ' + pad(r.m) + 'm · GTA VI Countdown' : 'GTA VI is out now';
-    var live = 0;
-    for (var i = 0; i < rows.length; i++) {
-      var ms = rows[i].p.at - now, out = ms <= 0;
-      rows[i].left.textContent = out ? 'OUT NOW' : short(ms);
-      if (out !== rows[i].out) { rows[i].out = out; rows[i].b.classList.toggle('out', out); }
-      if (out) live++;
-    }
-    if (live !== liveShown) { liveShown = live; $('bandCount').textContent = live + ' of ' + rows.length + ' regions unlocked so far'; }
-  }
-
-  $('q').addEventListener('input', render);
-  $('sortTime').addEventListener('click', function () { setSort('time'); });
-  $('sortName').addEventListener('click', function () { setSort('name'); });
-  function setSort(s) {
-    sortBy = s;
-    $('sortTime').setAttribute('aria-pressed', s === 'time');
-    $('sortName').setAttribute('aria-pressed', s === 'name');
-    var liveShown = -1;
-  var byTime = places.slice().sort(function (a, b) { return a.at - b.at || a.order - b.order; });
-  var first = byTime[0], last = byTime[byTime.length - 1];
-  $('bandStat').textContent = 'The rollout starts in ' + first.label + ' and reaches ' + last.label + ' ' +
-    Math.round((last.at - first.at) / 36e5) + ' hours later.';
-
-  render();
-  }
-  $('reset').addEventListener('click', function () { choose(home); });
-
-  var liveShown = -1;
-  var byTime = places.slice().sort(function (a, b) { return a.at - b.at || a.order - b.order; });
-  var first = byTime[0], last = byTime[byTime.length - 1];
-  $('bandStat').textContent = 'The rollout starts in ' + first.label + ' and reaches ' + last.label + ' ' +
-    Math.round((last.at - first.at) / 36e5) + ' hours later.';
-
-  render();
-  choose(selected);
-  setInterval(tick, 1000);
-})();
-</script>
-<script>
-/* Visual effects only: skyline, depth parallax, card tilt. The countdown works without any of it. */
-(function () {
-  'use strict';
-  var hero = document.getElementById('top');
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Generated skyline silhouettes (same every load).
-  function skyline(id, seed, minH, maxH) {
-    var r = seed;
-    function rnd() { r = (r * 16807) % 2147483647; return r / 2147483647; }
-    var x = 0, d = 'M0 200';
-    while (x < 1600) {
-      var w = Math.round(16 + rnd() * 40), h = minH + rnd() * (maxH - minH);
-      if (rnd() > .86) h = Math.min(190, h * 1.7);
-      var top = Math.round(200 - h);
-      d += 'V' + top;
-      if (rnd() > .7 && w > 24) { // stepped crown with a mast
-        var s = Math.round(w / 4), c = Math.round(8 + rnd() * 16);
-        d += 'h' + s + 'v-' + c + 'h' + (w - 2 * s) + 'v' + c + 'h' + s;
-      } else {
-        d += 'h' + w;
-      }
-      x += w;
-      if (rnd() > .55) { var g = Math.round(3 + rnd() * 12); d += 'V' + Math.round(200 - minH * .45) + 'h' + g; x += g; }
-    }
-    document.getElementById(id).setAttribute('d', d + 'V200z');
-  }
-  skyline('cityFar', 20261119, 40, 120);
-  skyline('cityNear', 1119, 30, 95);
-
-  // Tilting country cards with a light that follows the pointer.
-  var list = document.getElementById('list'), hot = null;
-  function calm() { if (hot) { hot.style.setProperty('--tx', '0deg'); hot.style.setProperty('--ty', '0deg'); hot = null; } }
-  if (!reduce && window.matchMedia && matchMedia('(hover: hover)').matches) {
-    list.addEventListener('pointermove', function (e) {
-      var row = e.target.closest && e.target.closest('.row');
-      if (row !== hot) calm();
-      if (!row) return;
-      hot = row;
-      var b = row.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
-      row.style.setProperty('--ty', ((x - .5) * 10).toFixed(2) + 'deg');
-      row.style.setProperty('--tx', ((.5 - y) * 12).toFixed(2) + 'deg');
-      row.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
-      row.style.setProperty('--my', (y * 100).toFixed(1) + '%');
-    });
-    list.addEventListener('pointerleave', calm);
-  }
-
-  // Nav sits under the banner until the banner scrolls away.
-  var nav = document.getElementById('nav');
-  function stick() { nav.classList.toggle('stuck', window.scrollY > 40); }
-  window.addEventListener('scroll', stick, { passive: true }); stick();
-
-  if (reduce) return;
-
-  // Depth: pointer, device tilt, or a slow idle drift steer the whole scene.
-  var tx = 0, ty = 0, cx = 0, cy = 0, lastInput = -1e9, onScreen = true, lastSy = -1;
-  function clamp(v) { return Math.max(-1, Math.min(1, v)); }
-  window.addEventListener('pointermove', function (e) {
-    if (e.pointerType === 'touch') return;
-    tx = clamp((e.clientX / window.innerWidth - .5) * 2);
-    ty = clamp((e.clientY / window.innerHeight - .5) * 2);
-    lastInput = performance.now();
-  }, { passive: true });
-  window.addEventListener('deviceorientation', function (e) {
-    if (e.gamma == null || e.beta == null) return;
-    tx = clamp(e.gamma / 28);
-    ty = clamp((e.beta - 50) / 28);
-    lastInput = performance.now();
-  }, { passive: true });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; }).observe(hero);
-  }
-
-  function frame(now) {
-    if (onScreen) {
-      var gx = tx, gy = ty;
-      if (now - lastInput > 2500) { gx = Math.sin(now / 3600) * .55; gy = Math.cos(now / 4700) * .4; }
-      var nx = cx + (gx - cx) * .05, ny = cy + (gy - cy) * .05;
-      if (Math.abs(nx - cx) > .0004 || Math.abs(ny - cy) > .0004) {
-        cx = nx; cy = ny;
-        hero.style.setProperty('--px', cx.toFixed(4));
-        hero.style.setProperty('--py', cy.toFixed(4));
-      }
-      var sy = Math.min(1, window.scrollY / (hero.offsetHeight || 1));
-      if (Math.abs(sy - lastSy) > .002) { lastSy = sy; hero.style.setProperty('--sy', sy.toFixed(3)); }
-    }
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
-</script>
+<script src="assets/app.js"></script>
+<script src="assets/vendor/d3-7.9.0.min.js" defer></script>
+<script src="assets/vendor/topojson-client-3.1.0.min.js" defer></script>
+<script src="assets/world-50m.js" defer></script>
+<script src="assets/map.js" defer></script>
 </body>
 </html>
